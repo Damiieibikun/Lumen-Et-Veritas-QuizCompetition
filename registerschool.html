@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lumen Et Veratis | Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <link href="out/output.css" rel="stylesheet" />
+    <style>
+        .errorInput {
+            border: 1px solid red;
+        }
+        
+        #error-msg {
+            color: red;
+        }
+        
+        .errorS {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body class="relative">
+    <div id="countdown" class="fixed top-0 left-0 right-0 z-50 font-semibold text-[13px] text-center bg-gradient-to-r from-red-200 via-white to-white text-gray-800 py-2"></div>
+    <nav class="py-4 px-1 hidden lg:block mt-8">
+        <div class="flex justify-between items-end w-[95%] mx-auto">
+            <div id="logo" class="text-4xl uppercase font-serif">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-mortarboard-fill text-red-600" viewBox="0 0 16 16">
+                        <path
+                            d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917z" />
+                        <path
+                            d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466z" />
+                    </svg>
+                <span>lumen</span>
+                <span class="text-red-600">et</span>
+                <span>veratis</span>
+            </div>
+            <div>
+                <ul class="flex gap-5 text-[16px] font-bold">
+                    <li>
+                        <a href="index.html" class="hover:text-red-600 hover:border-b-2 p-2 hover:border-red-600">Home</a>
+                    </li>
+                    <li>
+                        <a href="index.html#about" class="hover:text-red-600 hover:border-b-2 p-2 hover:border-red-600">About
+                                Competition</a>
+                    </li>
+                    <li>
+                        <a href="index.html#winners" class="hover:text-red-600 hover:border-b-2 p-2 hover:border-red-600">Last Year's Winners</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="flex items-center gap-2">
+                <a href="registerschool.html">
+                    <button class="btn btn-outline-danger">Register</button>
+                </a>
+                <a href="school.html">
+                    <button class="btn btn-outline-danger">LogIn</button>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- // responsive -->
+    <nav class="lg:hidden justify-between items-center py-4 px-1 flex mt-8">
+        <div id="logo" class="text-2xl uppercase font-serif">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-mortarboard-fill text-red-600" viewBox="0 0 16 16">
+                    <path
+                        d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917z" />
+                    <path
+                        d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466z" />
+                </svg>
+        </div>
+
+        <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="35"
+                    height="35"
+                    fill="currentColor"
+                    class="bi bi-list text-red-500"
+                    viewBox="0 0 16 16">
+                    <path
+                        fill-rule="evenodd"
+                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+                </svg>
+            </button>
+
+        <div class="offcanvas offcanvas-end bg-gradient-to-r from-red-200 via-white to-white text-gray-800" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasRightLabel">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-mortarboard-fill text-red-600" viewBox="0 0 16 16">
+                            <path
+                                d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917z" />
+                            <path
+                                d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466z" />
+                        </svg>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="flex flex-col gap-5 text-[17px]">
+                    <li>
+                        <a href="index.html" class="hover:text-red-600 hover:border-b-2 p-2 hover:border-red-600">Home</a>
+                    </li>
+                    <li>
+                        <a href="index.html#about" class="hover:red-blue-600 hover:border-b-2 p-2 hover:border-red-600">About</a>
+                    </li>
+                    <li>
+                        <a href="index.html#winners" class="hover:text-red-600 hover:border-b-2 p-2 hover:border-red-600">
+                                Last Year's Winners</a>
+                    </li>
+                    <li>
+                        <a href="registerschool.html">
+                            <button class="btn btn-outline-danger">Register</button>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="school.html">
+                            <button class="btn btn-outline-danger">LogIn</button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <nav aria-label="breadcrumb" class="px-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Register</li>
+        </ol>
+    </nav>
+
+    <p class="px-4 text-[13px] text-center">
+        <span class="font-bold">NB:</span> If you have already registered, please
+        <a href="school.html" class="text-red-600 font-bold" style="text-decoration: underline">Log In</a>
+    </p>
+    <!-- // start here -->
+    <section id="registerationDetails" class="container" style="min-height: 80vh">
+        <form class="mt-4 flex flex-col gap-4 relative card mx-auto p-4" id="registerForm" style="width: 95%">
+            <!-- // personal -->
+            <p class="text-[12px] hidden top-0 m-0" id="error-msg">
+                Kindly fill required fields *
+            </p>
+            <h3 class="text-3xl mt-3">
+                Institution Information <span class="text-red-600">*</span>
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="institutionname" placeholder="Institution Name" />
+                    <label for="institutionname">Institution Name</label>
+                </div>
+                <div class="form-floating relative">
+                    <input type="email" class="form-control" id="email" placeholder="name@example.com" />
+                    <label for="email">Email address</label>
+                    <p class="absolute m-0 text-[12px] bottom-[-1] errorS hidden" id="errorEm">
+                        Invalid email
+                    </p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="form-floating relative">
+                    <input type="text" class="form-control" id="phonenumber" placeholder="phonenumber" />
+                    <label for="phonenumber">Phone Number</label>
+                    <p class="absolute m-0 text-[12px] bottom-[-1] errorS hidden" id="errorNum">
+                        Invalid number, must be up to 11 digits
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="form-floating relative">
+                    <input type="password" class="form-control" id="password" placeholder="Password" />
+                    <label for="password">Password</label>
+                    <p class="absolute m-0 text-[12px] bottom-[-1] errorS hidden" id="errorPass">
+                        Password must have 8 characters and letter
+                    </p>
+                </div>
+                <div class="form-floating relative">
+                    <input type="password" class="form-control" id="con-password" placeholder="Confirm Password" />
+                    <label for="con-password">Confirm Password</label>
+                    <p class="absolute m-0 text-[12px] bottom-[-1] errorS hidden" id="errorconPass">
+                        Password must match
+                    </p>
+                </div>
+            </div>
+            <button type="submit" class="mt-12 px-4 py-2 bg-gradient-to-r from-red-300 via-red-400 to-red-500 text-white border-none rounded-none transform transition-transform duration-200 hover:scale-[1.01] self-center">
+                    Register
+                </button>
+        </form>
+    </section>
+
+    <!-- //... -->
+
+   
+
+    <!-- // payment modal -->
+    <div class="modal fade" id="paymentBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 font-bold text-red-600" id="staticBackdropLabel">
+                        MPAY
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body relative">
+                    <p class="errorS hidden absolute top-0" id="payERR">
+                        Fill required fields *
+                    </p>
+                    <p class="text-3xl font-bold mb-3">&#8358; 5,070</p>
+                    <div class="row gy-3">
+                        <div class="col-md-6">
+                            <label for="cc-name" class="form-label">Name on
+                                    card</label>
+                            <input type="text" class="form-control" id="cc-name" placeholder required onblur="validatePaymentEmpty(this)" />
+                            <small class="text-muted">Full name as displayed
+                                    on card</small>
+                        </div>
+
+                        <div class="col-md-6 relative" style="padding-bottom: 20px">
+                            <label for="cc-number" class="form-label">Credit
+                                    card number</label>
+                            <input type="text" class="form-control" id="cc-number" placeholder required onblur="validateCard(this)" />
+                            <p class="absolute bottom-0 errorS hidden" id="invalidCard1">
+                                Invalid Number
+                            </p>
+                        </div>
+
+                        <div class="col-md-3 relative" style="padding-bottom: 20px">
+                            <label class="form-label">Expiration</label>
+                            <div class="flex items-center gap-2">
+                                <input type="text" class="form-control" id="cc-expiration1" placeholder required onblur="validatePaymentEmpty(this)" /> /
+                                <div>
+                                    <input type="text" class="form-control" id="cc-expiration2" placeholder required onblur="validateCard(this)" />
+                                    <p class="absolute bottom-0 errorS hidden" id="invalidCard2">
+                                        Invalid Expiration
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 relative" style="padding-bottom: 20px">
+                            <label for="cc-cvv" class="form-label">CVV</label>
+                            <input type="text" class="form-control" id="cc-cvv" placeholder required onblur="validateCard(this)" />
+                            <p class="absolute bottom-0 errorS hidden" id="invalidCard3">
+                                Invalid CVV
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-center">
+                    <button type="button" class="px-4 py-2 bg-gradient-to-r from-red-300 via-red-400 to-red-500 text-white border-none rounded-none transform transition-transform duration-200 hover:scale-[1.01]" id="pay">
+                            Pay
+                        </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ../ -->
+    <footer class="mt-[60px] bg-gray-50">
+        <div class="w-[90%] mx-auto grid grid-cols-1 md:grid-cols-3 py-8 md:gap-3 text-center gap-12">
+            <div class="md:text-left uppercase text-3xl font-serif flex flex-col items-center md:block">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-mortarboard-fill text-red-600" viewBox="0 0 16 16">
+                        <path
+                            d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917z" />
+                        <path
+                            d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466z" />
+                    </svg>
+                <span>lumen</span>
+                <span class="text-red-600">et</span>
+                <span>veratis</span>
+            </div>
+            <div>
+                <ul class="flex flex-col gap-3 text-[14px] md:text-left">
+                    <li>
+                        <a href="index.html" class="hover:text-red-600 hover:border-b-2 p-2 hover:border-red-600 font-bold">Home</a>
+                    </li>
+                    <li>
+                        <a href="index.html#about" class="hover:text-red-600 hover:border-b-2 p-2 hover:border-red-600">About
+                                Competition</a>
+                    </li>
+                    <li>
+                        <a href="index.html#winners" class="hover:text-red-600 hover:border-b-2 p-2 hover:border-red-600">Past
+                                Winners</a>
+                    </li>
+                    <li>
+                        <a href="registerschool.html" class="hover:text-red-600 hover:border-b-2 p-2 hover:border-red-600">Register</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <p class="font-bold mb-3 lg:text-left">Contact Information
+                </p>
+                <ul class="flex flex-col gap-3 text-[14px] md:text-left items-center md:items-start">
+                    <li class="flex gap-3 items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-geo-alt-fill text-red-600" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                            </svg>
+                        <span>123 someplace, somewhere, somecity</span>
+                    </li>
+                    <li class="flex gap-3 items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-telephone-fill text-red-600" viewBox="0 0 16 16">
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
+                            </svg>
+                        <span>+(123)-456-789</span>
+                    </li>
+                    <li class="flex gap-3 items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-envelope-at-fill text-red-600" viewBox="0 0 16 16">
+                                <path
+                                    d="M2 2A2 2 0 0 0 .05 3.555L8 8.414l7.95-4.859A2 2 0 0 0 14 2zm-2 9.8V4.698l5.803 3.546zm6.761-2.97-6.57 4.026A2 2 0 0 0 2 14h6.256A4.5 4.5 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586zM16 9.671V4.697l-5.803 3.546.338.208A4.5 4.5 0 0 1 12.5 8c1.414 0 2.675.652 3.5 1.671" />
+                                <path
+                                    d="M15.834 12.244c0 1.168-.577 2.025-1.587 2.025-.503 0-1.002-.228-1.12-.648h-.043c-.118.416-.543.643-1.015.643-.77 0-1.259-.542-1.259-1.434v-.529c0-.844.481-1.4 1.26-1.4.585 0 .87.333.953.63h.03v-.568h.905v2.19c0 .272.18.42.411.42.315 0 .639-.415.639-1.39v-.118c0-1.277-.95-2.326-2.484-2.326h-.04c-1.582 0-2.64 1.067-2.64 2.724v.157c0 1.867 1.237 2.654 2.57 2.654h.045c.507 0 .935-.07 1.18-.18v.731c-.219.1-.643.175-1.237.175h-.044C10.438 16 9 14.82 9 12.646v-.214C9 10.36 10.421 9 12.485 9h.035c2.12 0 3.314 1.43 3.314 3.034zm-4.04.21v.227c0 .586.227.8.581.8.31 0 .564-.17.564-.743v-.367c0-.516-.275-.708-.572-.708-.346 0-.573.245-.573.791" />
+                            </svg>
+                        <span>bornianpharma@somemail.com</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script>
+        let registeredInstitutes =
+            JSON.parse(localStorage.getItem("LumenVeritas")) || []; // get data from local storage
+        let errorMsg = document.getElementById("error-msg"); // error messages
+        let errorNum = document.getElementById("errorNum");
+        let errorEm = document.getElementById("errorEm");
+        let institutionname = document.getElementById("institutionname");
+        let email = document.getElementById("email");
+        let phone = document.getElementById("phonenumber");
+        let password = document.getElementById("password");
+        let confirmpassword = document.getElementById("con-password");
+
+        let ccname = document.getElementById("cc-name");
+        let ccnumber = document.getElementById("cc-number");
+        let ccexpiration1 = document.getElementById("cc-expiration1");
+        let ccexpiration2 = document.getElementById("cc-expiration2");
+        let ccccv = document.getElementById("cc-cvv");
+
+        let payment = document.getElementById("pay");
+        let paymentErr = document.getElementById("payERR");
+        let invalidCard1 = document.getElementById("invalidCard1");
+        let invalidCard2 = document.getElementById("invalidCard2");
+        let invalidCard3 = document.getElementById("invalidCard3");
+
+        function validateEmpty(element) {
+            // validate empty field
+            let validated = false;
+            if (element.value.trim() === "") {
+                element.classList.add("errorInput");
+                errorMsg.classList.remove("hidden");
+                errorMsg.classList.add("absolute");
+            } else {
+                validated = true;
+                element.classList.remove("errorInput");
+                errorMsg.classList.add("hidden");
+            }
+            return validated;
+        }
+
+        function validatePaymentEmpty(element) {
+            // validate empty field
+            let validated = false;
+            if (element.value.trim() === "") {
+                element.classList.add("errorInput");
+                paymentErr.classList.remove("hidden");
+                paymentErr.classList.add("absolute");
+            } else {
+                validated = true;
+                element.classList.remove("errorInput");
+                paymentErr.classList.add("hidden");
+            }
+            return validated;
+        }
+
+        function validateCard(element) {
+            // validate number
+            let validated = false;
+            const numRegex = /^\d{2,}$/;
+            if (element.value.trim() === "") {
+                element.classList.add("errorInput");
+                paymentErr.classList.remove("hidden");
+                paymentErr.classList.add("absolute");
+            } else if (!numRegex.test(element.value.trim())) {
+                element.classList.add("errorInput");
+                element.nextElementSibling.classList.remove("hidden");
+            } else {
+                validated = true;
+                element.classList.remove("errorInput");
+                paymentErr.classList.add("hidden");
+                element.nextElementSibling.classList.add("hidden");
+            }
+            return validated;
+        }
+
+        function validateEmail(element) {
+            // validate email
+            let validated = false;
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (element.value.trim() === "") {
+                element.classList.add("errorInput");
+                errorMsg.classList.remove("hidden");
+            } else if (!emailRegex.test(element.value.trim())) {
+                element.classList.add("errorInput");
+                errorEm.classList.remove("hidden");
+            } else {
+                validated = true;
+                element.classList.remove("errorInput");
+                errorMsg.classList.add("hidden");
+                errorEm.classList.add("hidden");
+            }
+            return validated;
+        }
+
+        function validateNum(element) {
+            // validate number
+            let validated = false;
+            const numRegex = /^0\d{10}$/;
+            if (element.value.trim() === "") {
+                element.classList.add("errorInput");
+                errorMsg.classList.remove("hidden");
+            } else if (!numRegex.test(element.value.trim())) {
+                element.classList.add("errorInput");
+                errorNum.classList.remove("hidden");
+            } else {
+                validated = true;
+                element.classList.remove("errorInput");
+                errorMsg.classList.add("hidden");
+                errorNum.classList.add("hidden");
+            }
+            return validated;
+        }
+
+        function validatePassword(element) {
+            // validate password format
+            let validated = false;
+            const passwordRegex = /^(?=.*[a-zA-Z]).{8,}$/;
+            if (element.value.trim() === "") {
+                element.classList.add("errorInput");
+                errorMsg.classList.remove("hidden");
+            } else if (!passwordRegex.test(element.value.trim())) {
+                element.classList.add("errorInput");
+                errorPass.classList.remove("hidden");
+            } else {
+                validated = true;
+                element.classList.remove("errorInput");
+                errorMsg.classList.add("hidden");
+                errorPass.classList.add("hidden");
+            }
+            return validated;
+        }
+
+        function confirmPassword(element) {
+            // validate confirm password
+            let validated = false;
+
+            if (element.value.trim() === "") {
+                element.classList.add("errorInput");
+                errorMsg.classList.remove("hidden");
+            } else if (element.value.trim() !== password.value.trim()) {
+                element.classList.add("errorInput");
+                errorconPass.classList.remove("hidden");
+            } else {
+                validated = true;
+                element.classList.remove("errorInput");
+                errorMsg.classList.add("hidden");
+                errorconPass.classList.add("hidden");
+            }
+            return validated;
+        }
+
+        function createInstitue(element) {
+            let exists = registeredInstitutes.some((school) => {
+                return element.value.trim() === school.instituteName;
+            });
+            if (exists) {
+                alert("Institute Already Exists in our Database");
+            } else {
+                let newSchool = {
+                    instituteName: institutionname.value,
+                    email: email.value,
+                    number: phone.value,
+                    password: password.value,
+                    students: [],
+                };
+                console.log(newSchool);
+                registeredInstitutes.push(newSchool);
+                localStorage.setItem(
+                    "LumenVeritas",
+                    JSON.stringify(registeredInstitutes)
+                );
+                window.location.href = "school.html";
+            }
+        }
+        institutionname.addEventListener("blur", () =>
+            validateEmpty(institutionname)
+        ); // check validation
+
+        email.addEventListener("blur", () => validateEmail(email));
+        phone.addEventListener("blur", () => validateNum(phone));
+        password.addEventListener("blur", () => validatePassword(password));
+        confirmpassword.addEventListener("blur", () =>
+            confirmPassword(confirmpassword)
+        );
+
+        // const deadline = new Date('July 30, 2024 00:00:00').getTime(); // test for deadline
+        const deadline = new Date("September 30, 2024 00:00:00").getTime(); // Set the target date to September, 2024
+        const today = new Date();
+        const timeLeft = deadline - today;
+
+        registerForm.addEventListener("submit", function(e) {
+            // submit form
+            e.preventDefault();
+            let result =
+                validateEmpty(institutionname) &&
+                validateEmail(email) &&
+                validateNum(phone) &&
+                confirmPassword(confirmpassword);
+            if (result) {
+                if (timeLeft > 0) {
+                    createInstitue(institutionname);
+                    this.reset();
+                } else {
+                    // show payment modal
+                    var myModal = new bootstrap.Modal(
+                        document.getElementById("paymentBackdrop")
+                    );
+                    myModal.show();
+                }
+            }
+        });
+
+        payment.addEventListener("click", function() {
+            let result =
+                validatePaymentEmpty(ccname) &&
+                validateCard(ccnumber) &&
+                validatePaymentEmpty(ccexpiration1) &&
+                validateCard(ccexpiration2) &&
+                validateCard(ccccv);
+            if (result) {
+                console.log(result);
+                createInstitue(institutionname);
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js " integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz " crossorigin="anonymous "></script>
+    <script src="out/index.js"></script>
+</body>
+
+</html>

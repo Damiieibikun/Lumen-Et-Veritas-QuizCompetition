@@ -1,0 +1,15 @@
+{
+    "name": "lumen-et-veritas-competition",
+    "version": "1.0.0",
+    "description": "Quiz Competition Website",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "deploy-css": "tailwindcss -i ./src/input.css -o ./out/output.css --watch"
+    },
+    "author": "Damilola",
+    "license": "ISC",
+    "devDependencies": {
+        "tailwindcss": "^3.4.10"
+    }
+}

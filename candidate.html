@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lumen Et Veratis | Quiz Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <link href="out/output.css" rel="stylesheet" />
+    <style>
+        .progress {
+            background-color: #EF4444;
+            height: 10px
+        }
+        
+        .gray {
+            background-color: #e5e7eb;
+            height: 10px
+        }
+        
+        .errorInput {
+            border: 1px solid red;
+        }
+        
+        .errorS {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+
+</head>
+
+<body class="relative">
+    <div id="countdown" class="fixed top-0 left-0 right-0 z-50 font-semibold text-[13px] text-center bg-gradient-to-r from-red-200 via-white to-white text-gray-800 py-2"></div>
+ 
+    <!-- // start -->
+
+    <section style="min-height: 90vh; margin-top: 100px;">
+        <h2 class="px-4 text-3xl font-bold text-red-500 mb-5">
+            Welcome Candidate! <span id="nameofInstitute"></span>
+        </h2>
+        <!-- // progress bars -->
+        <div class="flex mb-4 mx-auto" style="width: 90%;">
+            <div class="rounded-full w-full gray" id="1stProgress"></div>
+            <div class="rounded-full w-full gray" id="2ndProgress"></div>
+            <div class="rounded-full w-full gray" id="3rdProgress"></div>
+        </div>
+
+        <div class="flex flex-col gap-3 mx-auto max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8" style="width: 90%;" id="verificationProcess">
+            <div class="flex flex-col gap-3" id="institution-slide">
+                <h3 class="text-2xl font-bold">Select your Institution</h3>
+                <select name="institution-list" id="institution-list" class="border-1 p-2">
+                    <!-- // append options -->
+                    <option value=""></option>
+                </select>
+                <button class="hidden bg-gradient-to-r from-red-300 via-red-400 to-red-500 text-white border-none rounded-none transform transition-transform duration-200 hover:scale-[1.01] self-center px-4 py-2" id="next-btn">Next</button>
+            </div>
+
+            <form class="hidden flex-col gap-3 relative" id="candidatename">
+                <p class="hidden m-0 errorS" id="error-msg" style="top: -18px;">Kindly fill required fields*</p>
+                <p class="hidden top-0 m-0 errorS" id="error-NotValidated">Candidate not registered, verify name or contact your institution for more details</p>
+                <h3 class="text-2xl font-bold mt-8">Please enter your full name</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="firstname" placeholder="First Name">
+                        <label for="firstname">First Name</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="lastname" placeholder="Last Name">
+                        <label for="lastname">Last Name</label>
+                    </div>
+                </div>
+                <button type="submit" class="px-4 py-2 bg-gradient-to-r from-red-300 via-red-400 to-red-500 text-white border-none rounded-none transform transition-transform duration-200 hover:scale-[1.01] self-center" id="verifycandidate">Verify</button>
+            </form>
+            <form class="hidden flex-col gap-3 relative" id="verifiedcandidateinfo">
+                <p class="hidden m-0 errorS absolute" id="error-msgD" style="top: -18px;">Kindly fill required fields*</p>
+                <p class="hidden top-0 m-0 errorS" id="error-NotValidatedD">Candidate not registered, or Invalid information; Please contact your institution for more details</p>
+                <h3 class="text-2xl font-bold" id="verifiedCname" style="margin-top: 60px;"></h3>
+                <h3 class="font-light">Please provide your details:</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="form-floating relative">
+                        <input type="text" class="form-control" id="phonenumber" placeholder="phonenumber">
+                        <label for="phonenumber">Phone Number</label>
+                        <p class="absolute m-0 text-[12px] bottom-[-1] errorS hidden" id="errorNum">Invalid number</p>
+                    </div>
+                    <div class="form-floating relative">
+                        <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                        <label for="email">Email address</label>
+                        <p class="absolute m-0 text-[12px] bottom-[-1] errorS hidden" id="errorEm">Invalid email</p>
+                    </div>
+                </div>
+                <!-- Button trigger modal -->
+                <button type="submit" class="px-4 py-2 bg-gradient-to-r from-red-300 via-red-400 to-red-500 text-white border-none rounded-none transform transition-transform duration-200 hover:scale-[1.01] self-center" id="submitCdetails"> 
+    Finish 
+</button>
+            </form>
+        </div>
+
+
+        <!-- Modal for successful completion-->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 font-bold" id="staticBackdropLabel">Congratulations! You have been Verified</h1>
+                    </div>
+                    <div class="modal-body">
+                        Once you are ready, click Begin to view your instructions
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" data-bs-target="#staticBackdrop2" data-bs-toggle="modal" class="px-4 py-2 bg-gradient-to-r from-red-300 via-red-400 to-red-500 text-white border-none rounded-none transform transition-transform duration-200 hover:scale-[1.01] self-center ">Begin</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal for instructions-->
+        <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 font-bold" id="staticBackdropLabel">Quiz Instructions: Please Read Carefully</h1>
+                    </div>
+                    <div class="modal-body font-light">
+                        <p class="mb-2">Welcome to the quiz! Before you begin, kindly review the instructions below to ensure a smooth experience:</p>
+                        <ol>
+                            <li class="mb-2"><strong>Quiz Composition:</strong>
+                                <ul>
+                                    <li>The quiz consists of 10 questions covering topics in <strong>General Knowledge</strong>, <strong>Quantitative and Verbal Reasoning</strong>, <strong>Simple Algebra</strong>, and <strong>Information and Communication Technology (ICT)</strong>.</li>
+                                </ul>
+                            </li>
+                            <li class="mb-2"><strong>Time Limit:</strong>
+                                <ul>
+                                    <li>You have a total of <strong>2 minutes</strong> to complete all 10 questions. The timer starts as soon as you click the <strong>Start Quiz</strong> button.</li>
+                                    <li>Once the time runs out, your quiz will be automatically submitted, and you will receive your results.</li>
+                                </ul>
+                            </li>
+                            <li class="mb-2"><strong>Answering Questions:</strong>
+                                <ul>
+                                    <li>Each question is <strong>multiple choice</strong> with only one correct answer.</li>
+                                    <li>You can choose to <strong>skip</strong> a question if you're unsure. Skipped questions will not affect your ability to move forward.</li>
+                                </ul>
+                            </li>
+                            <li class="mb-2"><strong>Navigation:</strong>
+                                <ul>
+                                    <li>You <strong>cannot go back</strong> to previous questions once you’ve moved forward.</li>
+                                    <li>Carefully review your answers before proceeding to the next question.</li>
+                                </ul>
+                            </li>
+                            <li class="mb-2"><strong>Submission & Results:</strong>
+                                <ul>
+                                    <li>Your quiz will be automatically submitted when the timer reaches zero or when you finish all the questions.</li>
+                                    <li>After submission, you will immediately see your result as a percentage score.</li>
+                                </ul>
+                            </li>
+                            <li class="mb-2"><strong>Important Notes:</strong>
+                                <ul>
+                                    <li>Manage your time wisely. You have about <strong>12 seconds per question</strong>.</li>
+                                    <li>Make sure to read each question carefully before answering.</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="modal-footer justify-center">
+                        <a href="quiz.html">
+                            <button type="button" class="bg-gradient-to-r from-red-300 via-red-400 to-red-500 px-4 py-2 text-white" id="startQuiz" onclick="createStudentsScores()">Start
+                            </button>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal to display result -->
+        <div class="modal fade" id="staticBackdropA" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header" style="justify-content: end;">
+                  <h1 class="modal-title fs-5 text-red-600 font-bold" id="staticBackdropLabel"></h1>
+                  <a href="index.html">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </a>
+                  
+                </div>
+                <div class="modal-body text-center" id="studentScore">
+                  ...
+                </div>
+                <div class="modal-footer self-center">
+                    <a href="index.html">
+                        <button type="button" class="px-4 py-2 bg-gradient-to-r from-red-300 via-red-400 to-red-500 text-white">Return to HomePage</button>
+                    </a>              
+                 
+                  <button type="button" class="px-4 py-2 bg-gradient-to-r from-red-300 via-red-400 to-red-500 text-white" id="view-winners">View Winners</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+           <!-- // current winners modal -->
+      <div class="modal fade" id="currentWinners" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 font-bold text-red-600 uppercase text-3xl" id="staticBackdropLabel">Winners</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body flex flex-wrap justify-center gap-5" id="displayWinners">
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="px-4 py-2 bg-gradient-to-r from-red-300 via-red-400 to-red-500 text-white" data-bs-dismiss="modal">Close</button>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+
+
+    <!-- ../ -->
+    <footer class="mt-[60px] bg-gray-50 ">
+        <div class="w-[90%] mx-auto grid grid-cols-1 md:grid-cols-3 py-8 md:gap-3 text-center gap-12 ">
+            <div class="md:text-left uppercase text-3xl font-serif flex flex-col items-center md:block ">
+                <svg xmlns="http://www.w3.org/2000/svg " width="40 " height="40 " fill="currentColor " class="bi bi-mortarboard-fill text-red-600 " viewBox="0 0 16 16 ">
+                        <path
+                            d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917z " />
+                        <path
+                            d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466z " />
+                    </svg>
+                <span>lumen</span>
+                <span class="text-red-600 ">et</span>
+                <span>veratis</span>
+            </div>
+            <div>
+                <ul class="flex flex-col gap-3 text-[14px] md:text-left ">
+                    <li>
+                        <a href="index.html " class="hover:text-red-600 hover:border-b-2 p-2 hover:border-red-600 font-bold ">Home</a>
+                    </li>
+                    <li>
+                        <a href="index.html#about " class="hover:text-red-600 hover:border-b-2 p-2 hover:border-red-600 ">About
+                                Competition</a>
+                    </li>
+                    <li>
+                        <a href="index.html#winners " class="hover:text-red-600 hover:border-b-2 p-2 hover:border-red-600 ">Past
+                                Winners</a>
+                    </li>
+                    <li>
+                        <a href="registerschool.html " class="hover:text-red-600 hover:border-b-2 p-2 hover:border-red-600 ">Register</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <p class="font-bold mb-3 lg:text-left ">Contact Information
+                </p>
+                <ul class="flex flex-col gap-3 text-[14px] md:text-left items-center md:items-start ">
+                    <li class="flex gap-3 items-start ">
+                        <svg xmlns="http://www.w3.org/2000/svg " width="18 " height="18 " fill="currentColor " class="bi bi-geo-alt-fill text-red-600 " viewBox="0 0 16 16 ">
+                                <path
+                                    d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6 " />
+                            </svg>
+                        <span>123 someplace, somewhere, somecity</span>
+                    </li>
+                    <li class="flex gap-3 items-start ">
+                        <svg xmlns="http://www.w3.org/2000/svg " width="18 " height="18 " fill="currentColor " class="bi bi-telephone-fill text-red-600 " viewBox="0 0 16 16 ">
+                                <path
+                                    fill-rule="evenodd "
+                                    d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163
+                        2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z " />
+                            </svg>
+                        <span>+(123)-456-789</span>
+                    </li>
+                    <li class="flex gap-3 items-start ">
+                        <svg xmlns="http://www.w3.org/2000/svg " width="18 " height="18 " fill="currentColor " class="bi bi-envelope-at-fill text-red-600 " viewBox="0 0 16 16 ">
+                                <path
+                                    d="M2 2A2 2 0 0 0 .05 3.555L8 8.414l7.95-4.859A2 2 0 0 0 14 2zm-2 9.8V4.698l5.803 3.546zm6.761-2.97-6.57 4.026A2 2 0 0 0 2 14h6.256A4.5 4.5 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586zM16 9.671V4.697l-5.803
+                        3.546.338.208A4.5 4.5 0 0 1 12.5 8c1.414 0 2.675.652 3.5 1.671 " />
+                                <path
+                                    d="M15.834 12.244c0 1.168-.577 2.025-1.587 2.025-.503 0-1.002-.228-1.12-.648h-.043c-.118.416-.543.643-1.015.643-.77 0-1.259-.542-1.259-1.434v-.529c0-.844.481-1.4 1.26-1.4.585 0 .87.333.953.63h.03v-.568h.905v2.19c0
+                        .272.18.42.411.42.315 0 .639-.415.639-1.39v-.118c0-1.277-.95-2.326-2.484-2.326h-.04c-1.582 0-2.64 1.067-2.64 2.724v.157c0 1.867 1.237 2.654 2.57 2.654h.045c.507 0 .935-.07 1.18-.18v.731c-.219.1-.643.175-1.237.175h-.044C10.438 16 9
+                        14.82 9 12.646v-.214C9 10.36 10.421 9 12.485 9h.035c2.12 0 3.314 1.43 3.314 3.034zm-4.04.21v.227c0 .586.227.8.581.8.31 0 .564-.17.564-.743v-.367c0-.516-.275-.708-.572-.708-.346 0-.573.245-.573.791 " />
+                            </svg>
+                        <span>bornianpharma@somemail.com</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let registeredInstitutes = JSON.parse(localStorage.getItem('LumenVeritas')) || []
+        let registeredStudentsData = JSON.parse(localStorage.getItem('studentsData')) || []
+
+        let errorMsg = document.getElementById('error-msg') // error messages
+        let errorMsgD = document.getElementById('error-msgD') // error messages
+        let errorNotValidated = document.getElementById('error-NotValidated') // error messages
+        let errorNotValidatedD = document.getElementById('error-NotValidatedD') // error messages
+
+        let firstProgress = document.getElementById('1stProgress') // progress bars
+        let secondProgress = document.getElementById('2ndProgress')
+        let lastProgress = document.getElementById('3rdProgress')
+
+        let institutionOptions = document.getElementById('institution-list') // institue
+        let institutionSlide = document.getElementById('institution-slide')
+        let candidateDetails = document.getElementById('candidatename')
+        let verifiedcandidateinfo = document.getElementById('verifiedcandidateinfo')
+        let verifiedCname = document.getElementById('verifiedCname')
+        let email = document.getElementById('email')
+        let phone = document.getElementById('phonenumber')
+        let previous = document.getElementById('prev-btn')
+        let next = document.getElementById('next-btn')
+
+
+        let firstname = document.getElementById('firstname') // students
+        let lastname = document.getElementById('lastname')
+
+        if (registeredInstitutes.length !== 0) {
+            registeredInstitutes.map(school => {
+                institutionOptions.innerHTML += `<option value=${school.instituteName.trim()}>${school.instituteName}</option>`
+            });
+        }
+
+        // choose school
+        institutionOptions.addEventListener('change', function() {
+            let selectedInstitute = this.options[this.selectedIndex].innerText
+            let found = registeredInstitutes.some((school) => {
+                return school.instituteName === selectedInstitute
+            })
+
+            if (found) {
+                next.classList.remove('hidden')
+                localStorage.setItem('Student-school', selectedInstitute)
+            }
+        })
+
+        next.addEventListener('click', function() {
+            institutionSlide.classList.add('hidden')
+            institutionSlide.classList.remove('flex')
+            candidateDetails.classList.remove('hidden')
+            candidateDetails.classList.add('flex')
+            firstProgress.classList.remove('gray')
+            firstProgress.classList.add('progress')
+        })
+
+
+        // verify name
+        function verifyStudent() {
+            let verified;
+            let selectedSchool = institutionOptions.options[institutionOptions.selectedIndex].innerText
+            registeredInstitutes.forEach(school => {
+                if (school.instituteName === selectedSchool) {
+                    verified = school.students.some((student) => {
+                        return student.firstname === firstname.value.trim() && student.lastname === lastname.value.trim()
+                    })
+                }
+            });
+
+            return verified
+        }
+
+        // verify student details
+        function verifyStudentDetails() {
+            let verified;
+            let selectedSchool = institutionOptions.options[institutionOptions.selectedIndex].innerText
+            registeredInstitutes.forEach(school => {
+                if (school.instituteName === selectedSchool) {
+                    verified = school.students.some((student) => {
+                        return student.firstname === firstname.value.trim() && student.lastname === lastname.value.trim() && student.email === email.value.trim() && student.phone === phone.value.trim()
+                    })
+                }
+            });
+
+            return verified
+        }
+
+        function validateEmpty(element) { // validate empty field
+            let validated = false
+            if (element.value.trim() === '') {
+                element.classList.add('errorInput')
+                errorMsg.classList.remove('hidden')
+                errorMsg.classList.add('absolute')
+            } else {
+                validated = true
+                element.classList.remove('errorInput')
+                errorMsg.classList.add('hidden')
+            }
+            return validated
+        }
+
+        function validateEmail(element) { // validate email
+            let validated = false
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (element.value.trim() === '') {
+                element.classList.add('errorInput')
+                errorMsgD.classList.remove('hidden')
+            } else if ((!emailRegex.test(element.value.trim()))) {
+                element.classList.add('errorInput')
+                errorEm.classList.remove('hidden')
+            } else {
+                validated = true
+                element.classList.remove('errorInput');
+                errorMsgD.classList.add('hidden');
+                errorEm.classList.add('hidden');
+            }
+            return validated
+        }
+
+        function validateNum(element) { // validate number
+            let validated = false
+            const numRegex = /^0\d{10}$/;
+            if (element.value.trim() === '') {
+                element.classList.add('errorInput')
+                errorMsgD.classList.remove('hidden')
+            } else if ((!numRegex.test(element.value.trim()))) {
+                element.classList.add('errorInput')
+                errorNum.classList.remove('hidden')
+            } else {
+                validated = true
+                element.classList.remove('errorInput');
+                errorMsgD.classList.add('hidden');
+                errorNum.classList.add('hidden');
+            }
+            return validated
+        }
+
+        firstname.addEventListener('blur', () => validateEmpty(firstname))
+        lastname.addEventListener('blur', () => validateEmpty(lastname))
+        email.addEventListener('blur', () => validateEmail(email))
+        phone.addEventListener('blur', () => validateNum(phone))
+
+        candidateDetails.addEventListener('submit', function(e) {
+            e.preventDefault()
+            let result = validateEmpty(firstname) && validateEmpty(lastname)
+            if (result) {
+                if (verifyStudent()) {
+                    candidateDetails.classList.add('hidden')
+                    candidateDetails.classList.remove('flex')
+                    verifiedcandidateinfo.classList.remove('hidden')
+                    verifiedcandidateinfo.classList.add('flex')
+                    secondProgress.classList.remove('gray')
+                    secondProgress.classList.add('progress')
+                    verifiedCname.innerText = `${firstname.value} ${lastname.value}`
+
+                } else {
+                    errorNotValidated.classList.remove('hidden')
+                    errorNotValidated.classList.add('absolute')
+                }
+            }
+        })
+
+        verifiedcandidateinfo.addEventListener('submit', function(e) {
+            e.preventDefault()
+            let result = validateNum(phone) && validateEmail(email)
+            if (result) {
+                if (verifyStudentDetails()) {
+                    // check if student has taken exam
+                    let studentExist = registeredStudentsData.find((student)=>{
+                        return student.firstname === firstname.value && student.email === email.value && student.phone === phone.value
+                    })
+
+                    if(studentExist){
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdropA'));
+                        myModal.show();
+
+                        document.getElementById('studentScore').innerHTML = `
+                        <p>Your Score</p>
+                        <p class="text-3xl font-bold">${(studentExist.score/10) * 100}%</p>
+                        `  
+                    }
+                    else{
+                    var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
+                    myModal.show();
+                    }
+                   
+                    
+                } else {
+                    errorNotValidatedD.classList.remove('hidden')
+                    errorNotValidatedD.classList.add('absolute')
+                }
+            }
+        })
+
+        function createStudentsScores(){
+            let students = JSON.parse(localStorage.getItem('studentsData')) || []
+            let student = {
+                firstname: firstname.value,
+                lastname: lastname.value,
+                email: email.value,
+                phone: phone.value,
+                university: localStorage.getItem('Student-school'),
+                score:0
+            }
+
+            students.push(student)
+            localStorage.setItem('studentsData', JSON.stringify(students))
+            localStorage.setItem('currentStudent', JSON.stringify(student))
+           
+            candidateDetails.reset()
+        }
+
+
+// Get the top 3
+const top3Scorers = registeredStudentsData.sort((a, b) => b.score - a.score).slice(0, 3);                       
+let winnersScores = document.getElementById('displayWinners')
+document.getElementById('view-winners').addEventListener('click', function(){
+    var myModal = new bootstrap.Modal(document.getElementById('currentWinners'));
+    myModal.show();
+    top3Scorers.map((student)=>{
+        winnersScores.innerHTML +=` <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class="flex flex-col items-center pb-10">
+            <div class="mt-5 relative rounded-full w-32 h-32 border-3 border-red-200 flex justify-center items-center">
+               <p class="font-bold text-2xl">${(student.score/10) * 100}%</p>
+            </div>
+
+            <h5 class="mb-1 mt-5 text-xl font-medium text-gray-900">
+                ${student.firstname} ${student.lastname}
+            </h5>
+           
+            <div class="flex gap-2 items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mortarboard text-red-500" viewBox="0 0 16 16">
+                        <path
+                            d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917zM8 8.46 1.758 5.965 8 3.052l6.242 2.913z" />
+                        <path
+                            d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466zm-.068 1.873.22-.748 3.496 1.311a.5.5 0 0 0 .352 0l3.496-1.311.22.748L8 12.46z" />
+                    </svg>
+                <span class="text-sm text-gray-900">${student.university}</span>
+            </div>
+        </div>
+    </div>`
+    })
+   
+})
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz " crossorigin="anonymous "></script>
+    <script src="out/index.js"></script>
+</body>
+
+</html>
